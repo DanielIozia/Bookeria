@@ -1,0 +1,22 @@
+footer {
+  color: white;
+  background-color: #343a40 !important;
+  position: absolute;
+  bottom: 0;
+  height: 12vh;
+  width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  .width-mobile {
+    min-width: 100% !important;
+  }
+}
+@media screen and (min-width: 1024px) {
+  form {
+    width: 50% !important;
+  }
+}/*# sourceMappingURL=main.css.map */
