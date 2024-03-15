@@ -17,6 +17,9 @@ Questo documento fornisce una panoramica del sito web **Bookeria** che utilizza 
 - `showDescription(bookKey, authorName)`: Viene chiamata quando un utente clicca sul pulsante "Show Description". Utilizza l'API di OpenLibrary per ottenere e visualizzare la descrizione del libro selezionato.
 - `closeDescription(bookKey, title, author)`: Viene chiamata quando un utente chiude la descrizione di un libro. Pulisce il contenuto precedente e ripristina il titolo e il pulsante "Show Description".
 
+## Link online
+https://main--book-eria.netlify.app/
+
 ## Contatti
 
 Per domande, suggerimenti o segnalazioni di bug, non esitare a contattarmi all'indirizzo email [danieliozia.di@gmail.com](mailto:danieliozia.di@gmail.com).
