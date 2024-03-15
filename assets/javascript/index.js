@@ -69,8 +69,11 @@ function showDescription(bookKey, authorName) {
         .then(data => {
             let title = data.title ? data.title : 'Title not available';
 
+
+            
             //alcuni sono oggetti, mentre altri no (boo)
-            const description = (data.description.value != undefined && data.description.value != null) ? data.description.value : data.description;
+            //const description = (data.description.value != undefined && data.description.value != null) ? data.description.value : data.description;
+            const description = data.description;
             const cardBody = document.querySelector(`[data-book-key="${bookKey}"] .card-body`);
 
             //metto il "\" per evitare che ci siano errori (si chiudono le virgolette)
@@ -97,7 +100,7 @@ function closeDescription(bookKey, title, author) {
     const titleElement = document.createElement('h5');
     titleElement.classList.add('card-title');
 
-    
+
     titleElement.textContent = title;
     const authorsElement = document.createElement('p');
     authorsElement.classList.add('card-text');
