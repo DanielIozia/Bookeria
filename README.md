@@ -3,9 +3,9 @@ Questo documento fornisce una panoramica del sito web **Bookeria** che utilizza 
 
 ## Funzionalità Principali
 
-- **Ricerca Libri per Genere**: Gli utenti possono selezionare un genere dalla lista e visualizzare i libri corrispondenti.
+- **Ricerca Libri per Genere**: Gli utenti possono scrivere un genere nella textbox e visualizzare i libri corrispondenti.
 - **Visualizzazione Titolo e Autori**: Ogni libro mostra il suo titolo e gli autori associati.
-- **Visualizzazione Descrizione**: È disponibile un pulsante "Show Description" per ogni libro che permette agli utenti di visualizzare una descrizione dettagliata del libro selezionato.
+- **Visualizzazione Descrizione**: È disponibile un pulsante "Show Description" per ogni libro che permette agli utenti di visualizzare una descrizione del libro selezionato.
 - **Gestione degli Apostrofi**: Il sito gestisce correttamente gli apostrofi nei titoli dei libri per evitare errori di formattazione.
 - **Indicatore di Caricamento**: È stato aggiunto un indicatore visivo per mostrare quando la ricerca dei libri è in corso.
 
