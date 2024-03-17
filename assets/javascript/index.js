@@ -1,3 +1,11 @@
+class NoBooksFound extends Error{
+    constructor(message) {
+        super(message);
+        this.name = 'NoBooksFound';
+    }
+}
+
+
 document.getElementById('loadingSpinner').style.display = 'none';
 
 //controllo se il titolo ha apostrofi
@@ -13,14 +21,27 @@ function there_is_apostrophe(array){
 
 function searchBooks(event) {
     event.preventDefault();
+    
+    //se nella ricerca precedente si era verificato un errore, rimuovo il messaggio
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.innerHTML = '';
+
+    
+    
     document.getElementById('loadingSpinner').style.display = 'block';
 
-    const genere = document.getElementById('genere').value;
+    const genere = document.getElementById('genere').value.toLowerCase();
     fetch(`https://openlibrary.org/subjects/${genere}.json`)
-        .then(response => response.json())
-        .then(data => {
+    .then(response => {
+        console.log(response)
+        return response.json()
+    })
+                .then(data => {
             document.getElementById('loadingSpinner').style.display = 'none';
             const book = data.works;
+            if (book.length === 0) {
+                throw new NoBooksFound('No books found');
+            }
             const booksList = document.getElementById('booksList');
             booksList.innerHTML = ''; // Pulizia del contenuto precedente
             book.forEach(book => {
@@ -37,12 +58,16 @@ function searchBooks(event) {
                     </div>
                 </div>
             `;
-                booksList.appendChild(bookElement);
+
+            booksList.appendChild(bookElement);
+                
             });
         })
         .catch(error => {
             console.error('Error fetching books:', error);
             document.getElementById('loadingSpinner').style.display = 'none';
+            booksList.innerHTML = '';
+            errorMessage.textContent = "No results. Please try again.";
         });
 }
 
