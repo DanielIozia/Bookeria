@@ -43,7 +43,7 @@ function searchBooks(event) {
             booksList.innerHTML = ''; // Pulizia del contenuto precedente
             book.forEach(book => {
                 const title = book.title ? book.title : 'Title not available';
-                const authors = book.authors ? book.authors.map(author => author.name).join(', ') : 'Author not available';
+                const authors = (book.authors != "") ? book.authors.map(author => author.name).join(', ') : 'Author not available';
                 const bookElement = document.createElement('div');
                 bookElement.classList.add('col');
                 bookElement.innerHTML = `
