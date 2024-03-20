@@ -5,7 +5,6 @@ class NoBooksFound extends Error{
     }
 }
 
-
 document.getElementById('loadingSpinner').style.display = 'none';
 
 //controllo se il titolo ha apostrofi
@@ -62,7 +61,7 @@ function searchBooks(event) {
             console.error('Error fetching books:', error);
             loadingSpinner.style.display = 'none';
             booksList.innerHTML = '';
-            errorMessage.textContent = "No books found. Please try a different search term.";
+            errorMessage.innerHTML = "No books found.<br>Please try a different search term.";
         });
 }
 
