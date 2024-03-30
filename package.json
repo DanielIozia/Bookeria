@@ -1,13 +1,32 @@
 {
-  "name": "bookeria",
   "version": "1.0.0",
-  "description": "Questo documento fornisce una panoramica del sito web **Bookeria** che utilizza le API di OpenLibrary per recuperare informazioni sui libri e farle visualizzare agli utenti. Il sito consente agli utenti di cercare libri indicando il genere e di visualizzare il titolo, l'autore e la descrizione.",
-  "main": "index.js",
-  "devDependencies": {},
+  "description": "My webpack project",
+  "name": "my-webpack-project",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "prettier": "^3.2.5",
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }

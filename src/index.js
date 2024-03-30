@@ -1,4 +1,4 @@
-import "../../assets/scss/main.css"
+import "../assets/scss/main.css"
 import _ from 'lodash';
 
 //ERRORI
@@ -27,7 +27,6 @@ function there_is_apostrophe(array){
 }
 
 function searchBooks(event) {
-    console.log()
     event.preventDefault();
 
     // Rimuovi il messaggio di errore precedente
