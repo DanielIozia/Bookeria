@@ -1,0 +1,13 @@
+{
+  "name": "bookeria",
+  "version": "1.0.0",
+  "description": "Questo documento fornisce una panoramica del sito web **Bookeria** che utilizza le API di OpenLibrary per recuperare informazioni sui libri e farle visualizzare agli utenti. Il sito consente agli utenti di cercare libri indicando il genere e di visualizzare il titolo, l'autore e la descrizione.",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

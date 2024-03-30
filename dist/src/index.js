@@ -1,4 +1,5 @@
 import "../../assets/scss/main.css"
+import _ from 'lodash';
 
 class NoBooksFound extends Error{
     constructor(message) {
@@ -6,8 +7,10 @@ class NoBooksFound extends Error{
         this.name = 'NoBooksFound';
     }
 }
-const apiSearch=process.env.SEARCH
-const apiDescpription=process.env.DESCRIPTION
+
+
+const apiSearch = process.env.SEARCH
+const apiDescpription = process.env.DESCRIPTION
 
 document.getElementById('loadingSpinner').style.display = 'none';
 
@@ -30,37 +33,39 @@ function searchBooks(event) {
     const errorMessage = document.getElementById('errorMessage');
     errorMessage.innerHTML = '';
 
-    // Nascondi lo spinner di caricamento
+    //Mostra lo spinner di caricamento
     const loadingSpinner = document.getElementById('loadingSpinner');
     loadingSpinner.style.display = 'block';
 
+    //Tutto piccolo per non creare ambiguità nella ricerca
     const genere = document.getElementById('genere').value.toLowerCase(); 
+
     fetch(apiSearch+`${genere}.json`)
         .then(response => response.json())
         .then(data => {
+            //Nascondo lo spinner di caricamento  
             loadingSpinner.style.display = 'none';
-            const book = data.works;
-            if (book.length === 0) {
-                throw new NoBooksFound('No books found');
-            }
             const booksList = document.getElementById('booksList');
             booksList.innerHTML = ''; // Pulizia del contenuto precedente
-            book.forEach(book => {
-                const title = book.title ? book.title : 'Title not available';
-                const authors = (book.authors != "") ? book.authors.map(author => author.name).join(', ') : 'Author not available';
+            data.works.forEach(book => {
+                const title = _.get(book, 'title', 'Title not available');
+                const authors = _.get(book, 'authors', []).map(author => _.get(author, 'name')).join(', ') || 'Author not available';
                 const bookElement = document.createElement('div');
                 bookElement.classList.add('col');
                 bookElement.innerHTML = `
-                <div class="card shadow-sm mt-2 mb-2" data-book-key="${book.key}">
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">Authors: ${authors}</p>
-                        <button class="btn btn-primary" onclick="showDescription('${book.key}', '${authors}')">Show Description</button>
+                    <div class="card shadow-sm mt-2 mb-2" data-book-key="${_.get(book, 'key', '')}">
+                        <div class="card-body">
+                            <h5 class="card-title">${title}</h5>
+                            <p class="card-text">Authors: ${authors}</p>
+                            <button class="btn btn-primary" onclick="showDescription('${_.get(book, 'key', '')}', '${authors}')">Show Description</button>
+                        </div>
                     </div>
-                </div>
-            `;
-            booksList.appendChild(bookElement);
+                `;
+                booksList.appendChild(bookElement);
             });
+            if (data.works.length === 0) {
+                throw new NoBooksFound('No books found');
+            }
         })
         .catch(error => {
             console.error('Error fetching books:', error);
@@ -77,10 +82,11 @@ function showDescription(bookKey, authorName) {
         .then(data => {
             let title = data.title ? data.title : 'Title not available';
 
-            //alcuni sono oggetti, mentre altri no
-            let description = (data?.description) ?  data.description : "Description not available";
-            if(description != "Description not available" && description?.value){
-                description = description.value
+            let description = _.get(data, 'description', 'Description not available');
+
+            // Verifica se la descrizione non è disponibile o se ha un campo 'value'
+            if (description !== 'Description not available' && _.get(description, 'value')) {
+                description = _.get(description, 'value');
             }
 
             const cardBody = document.querySelector(`[data-book-key="${bookKey}"] .card-body`);
