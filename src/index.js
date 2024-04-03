@@ -81,8 +81,6 @@ function searchBooks(event) {
     }
 }
 
-
-
 function showDescription(bookKey, authorName) {
 
     try{
