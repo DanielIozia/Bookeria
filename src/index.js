@@ -28,7 +28,6 @@ function there_is_apostrophe(array){
 
 function searchBooks(event) {
     event.preventDefault();
-
     // Rimuovi il messaggio di errore precedente
     const errorMessage = document.getElementById('errorMessage');
     errorMessage.innerHTML = '';
@@ -36,6 +35,7 @@ function searchBooks(event) {
     //Mostra lo spinner di caricamento
     const loadingSpinner = document.getElementById('loadingSpinner');
     loadingSpinner.style.display = 'block';
+    booksList.innerHTML = '';
 
     //Tutto piccolo per non creare ambiguità nella ricerca
     const genere = document.getElementById('genere').value.toLowerCase(); 
@@ -87,7 +87,7 @@ function showDescription(bookKey, authorName) {
         fetch(apiDescpription+`${bookKey}.json`)
             .then(response => response.json())
             .then(data => {
-                let title = data.title ? data.title : 'Title not available';
+                let title = _.get(data, 'title', 'Title not available');
                 let description = _.get(data, 'description', 'Description not available');
                 // Verifica se la descrizione non è disponibile o se ha un campo 'value'
                 if (description !== 'Description not available' && _.get(description, 'value')) {
